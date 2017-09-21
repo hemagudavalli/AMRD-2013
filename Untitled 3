@@ -1,0 +1,19 @@
+When the project is using Spring 4.3  and Hibernate 5.2,
+how to write the JUnit test without bounded with concrete DB closely. 
+In other words, How to mock DB in JUnit test for service method.  
+If not possible give the reason else list cases for the different scenario.
+
+Answer:
+
+Implementation can be changed for test scope to a in-memory light weight DB. 
+In test resources we have to use something like hsql as DB implementation in 
+hibernate configuration. This will only be in test scope, actual package created will use
+hibernate configuration for concrete DB. And hence we can mock the objects in Spring framework
+for testing.
+
+Example:
+To establish a DB connection we assume using a JDBC template.
+We can specify the driverManager class, database connection URL's in the templates.
+So in our unit test we have to mock (@powermock annotation) our JDBC template.
+
+//Assuming this question is theoretic.
